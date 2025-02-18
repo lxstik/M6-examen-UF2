@@ -9,7 +9,7 @@ function App() {
       <Router>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top w-100 p-3">
           <div className="container-fluid">
-            <Link className="navbar-brand" to="/Home">Comecocos</Link>
+            <Link className="navbar-brand" to="/">Comecocos</Link>
             <button
               className="navbar-toggler"
               type="button"
@@ -36,10 +36,11 @@ function App() {
 
         <div className="container mt-4" style={{ padding: 0 }}>
           <Routes>
-            <Route path="/Home" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="/Partida" element={<Partida />} />
             <Route path="/Instrucciones" element={<Instrucciones />} />
           </Routes>
+
         </div>
       </Router>
     </>
