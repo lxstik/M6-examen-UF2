@@ -79,6 +79,7 @@ export default function CuadriculaGenerar({ cuadricula }) {
         };
 
         window.addEventListener('keydown', handleKeyDown);
+        //eliminar el listener al final
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         };
@@ -89,6 +90,7 @@ export default function CuadriculaGenerar({ cuadricula }) {
             {cuadricula.map((fila, i) => (
                 <div key={i} style={{ display: 'flex' }}>
                     {fila.map((numero, y) => {
+                        //insertar comecocos cuando este en el medio
                         if (i == posicionComecocos.fila && y == posicionComecocos.columna) {
                             return (
                                 <div key={y} className={`casilla ${colorCuadrado(numero)}`}>
@@ -96,11 +98,11 @@ export default function CuadriculaGenerar({ cuadricula }) {
                                 </div>
                             );
                         } else {
+                            //por defecto es false pero una vez estamos en el momento de creacion del campo y estamos en la posicion del fantasma, crea al fantasma en vez de campo normal 
                             let esFantasma = false;
                             for (let j = 0; j < fantasmas.length; j++) {
                                 if (fantasmas[j].x == i && fantasmas[j].y == y) {
                                     esFantasma = true;
-                                    break;
                                 }
                             }
                             if (esFantasma == true) {
