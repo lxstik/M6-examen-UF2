@@ -30,3 +30,11 @@
   background-size: cover;
   background-position: center;
 }
+
+.fantasma{
+  width: 100%;
+  height: 100%;
+  background-image: url('./imgs/fantasma.png');
+  background-size: cover;
+  background-position: center;
+}
