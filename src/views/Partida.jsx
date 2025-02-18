@@ -1,6 +1,7 @@
 import React from 'react';
 import CuadriculaGenerar from "../components/Cuadricula";
 import { cuadricula } from "../components/cuadricula";
+import "../index.css";
 import fondo from "../imgs/fondo.png"
 
 export default function Partida() {
