@@ -14,19 +14,19 @@ export default function CuadriculaGenerar({ cuadricula }) {
                 const nuevoFantasma = new Fantasma();
                 let posicionValida = true;
 
-                // condicionales para que no se generen dentro de la div de comecocos
+                //condicionales para que no se generen dentro de la div de comecocos
                 if (nuevoFantasma.x == posicionComecocos.fila && nuevoFantasma.y == posicionComecocos.columna) {
                     posicionValida = false;
                 }
 
-                // Condicionales para que las fantasmas no coincidan de posiciones
+                //condicionales para que las fantasmas no coincidan de posiciones
                 for (let i = 0; i < nuevasFantasmas.length; i++) {
                     if (nuevasFantasmas[i].x == nuevoFantasma.x && nuevasFantasmas[i].y == nuevoFantasma.y) {
                         posicionValida = false;
                     }
                 }
 
-                // si la posición es válida, crea fantasma
+                //si la posición es válida, crea fantasma
                 if (posicionValida) {
                     nuevasFantasmas.push(nuevoFantasma);
                 }
@@ -35,7 +35,7 @@ export default function CuadriculaGenerar({ cuadricula }) {
         };
 
         generarFantasmas();
-    }, []); // solo se ejecuta una vez cuando el componente se monta
+    }, []); //solo se ejecuta una vez cuando el componente se monta
 
     useEffect(() => {
         const handleKeyDown = (event) => {
@@ -58,6 +58,22 @@ export default function CuadriculaGenerar({ cuadricula }) {
                 default:
                     break;
             }
+
+            const nuevaPosicion = { fila: nuevaFila, columna: nuevaColumna };
+
+             //comprobar si la nueva posicion de comecocos esta en la misma que un fantasma
+             function fantasmaPosicion(fantasma) {
+                return fantasma.x == nuevaPosicion.fila && fantasma.y == nuevaPosicion.columna;
+            }
+            
+            const fantasmaIndex = fantasmas.findIndex(fantasmaPosicion);
+            //mientras existan las fantasmas
+             if (fantasmaIndex != -1) {
+                 //si acierta borra al fantasma del array y recrea nuevasFantasmas con valores que quedaron, pero primero copia el array de fantasmas con .slice
+                 const nuevasFantasmas = fantasmas.slice();
+                 nuevasFantasmas.splice(fantasmaIndex, 1);
+                 setFantasmas(nuevasFantasmas);
+             }
 
             setPosicionComecocos({ fila: nuevaFila, columna: nuevaColumna });
         };
